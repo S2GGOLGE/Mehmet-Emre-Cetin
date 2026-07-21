@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mehmet Emre Çetin - Backend & Full-Stack Developer Portföy Sitesi">
+    <meta name="keywords" content="Mehmet Emre Çetin, C#, ASP.NET Core, SQL Server, Full-Stack Developer, HomeOS, Software Engineer">
+    <meta name="author" content="Mehmet Emre Çetin">
+    <title>Mehmet Emre Çetin | Backend & Full-Stack Developer</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#hero" class="nav-logo">&lt;MEC /&gt;</a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#about" class="nav-link">Hakkımda</a></li>
+                <li><a href="#skills" class="nav-link">Yetenekler</a></li>
+                <li><a href="#projects" class="nav-link">Projeler</a></li>
+                <li><a href="#homeos" class="nav-link highlight-link">HomeOS</a></li>
+                <li><a href="#roadmap" class="nav-link">Roadmap</a></li>
+                <li><a href="#contact" class="nav-link btn-nav">İletişim</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section" id="hero">
+        <div class="bg-grid-pattern"></div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="badge"><span class="pulse-dot"></span> Backend & Full-Stack Developer</div>
+                <h1 class="hero-title">Mehmet Emre <span class="gradient-text">Çetin</span></h1>
+                <p class="hero-subtitle">
+                    Modern web teknolojileri ve backend sistemleri geliştiriyor, güvenli ve ölçeklenebilir yazılım mimarileri üzerine çalışıyorum.
+                </p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-code"></i> Projelerimi Gör</a>
+                    <a href="#contact" class="btn btn-secondary"><i class="fa-regular fa-paper-plane"></i> İletişime Geç</a>
+                </div>
+                <div class="hero-socials">
+                    <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="mailto:iletisim@example.com" aria-label="E-posta"><i class="fa-regular fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="hero-code-window">
+                <div class="window-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="window-title">developer_profile.cs</span>
+                </div>
+                <div class="window-body">
+                    <pre><code><span class="keyword">public class</span> <span class="class-name">Developer</span> 
+{
+    <span class="keyword">public string</span> Name { <span class="keyword">get</span>; } = <span class="string">"Mehmet Emre Çetin"</span>;
+    <span class="keyword">public string</span> Role { <span class="keyword">get</span>; } = <span class="string">"Backend & Full-Stack"</span>;
+    <span class="keyword">public string</span>[] Stack { <span class="keyword">get</span>; } = {
+        <span class="string">"C#"</span>, <span class="string">"ASP.NET Core"</span>, <span class="string">"SQL Server"</span>, 
+        <span class="string">"JavaScript"</span>, <span class="string">"Python"</span> 
+    };
+    <span class="keyword">public bool</span> OpenToOpportunities { <span class="keyword">get</span>; } = <span class="keyword">true</span>;
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title" data-reveal><span class="gradient-text">01.</span> Hakkımda</h2>
+            <div class="about-grid">
+                <div class="about-text" data-reveal>
+                    <p>
+                        Yazılım geliştirme tutkumu, sürdürülebilir ve yüksek performanslı backend mimarileri inşa etmek üzerine yoğunlaştırıyorum.
+                        Özellikle <strong>ASP.NET Core, C#, RESTful API tasarımı, veritabanı yönetimi (SQL Server) ve JWT tabanlı güvenlik mimarileri</strong> üzerinde çalışmalar yürütmekteyim.
+                    </p>
+                    <p>
+                        Aynı zamanda <strong>Python ve yapay zekâ entegrasyonları</strong> ile sistemleri daha akıllı ve otomatize hale getirecek çözümler üretiyorum.
+                        Teorik bilgileri yalnızca makalelerden değil; gerçek dünya senaryolarını simüle eden uçtan uca mimariler ve entegre otomasyon projeleri geliştirerek pratik tecrübeye dönüştürüyorum.
+                    </p>
+                </div>
+                <div class="about-stats" data-reveal>
+                    <div class="stat-card glass-card">
+                        <i class="fa-solid fa-server"></i>
+                        <h3>Backend</h3>
+                        <p>Ölçeklenebilir API & Mimari</p>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <h3>Güvenlik</h3>
+                        <p>JWT & Yetkilendirme</p>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <i class="fa-solid fa-robot"></i>
+                        <h3>AI & Otomasyon</h3>
+                        <p>FastAPI & Asistan Entegrasyonu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="skills">
+        <div class="container">
+            <h2 class="section-title" data-reveal><span class="gradient-text">02.</span> Teknik Yetenekler</h2>
+            <div class="skills-grid">
+                
+                <div class="skill-category glass-card" data-reveal>
+                    <h3><i class="fa-solid fa-code"></i> Backend</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">C#</span>
+                        <span class="skill-tag">ASP.NET Core</span>
+                        <span class="skill-tag">REST API</span>
+                        <span class="skill-tag">JWT Auth</span>
+                        <span class="skill-tag">Middleware</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-card" data-reveal>
+                    <h3><i class="fa-solid fa-database"></i> Database</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">SQL Server</span>
+                        <span class="skill-tag">Entity Framework Core</span>
+                        <span class="skill-tag">LINQ</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-card" data-reveal>
+                    <h3><i class="fa-solid fa-laptop-code"></i> Frontend</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">JavaScript (ES6+)</span>
+                        <span class="skill-tag">Responsive Design</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-card" data-reveal>
+                    <h3><i class="fa-solid fa-brain"></i> AI & Automation</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">WebSocket</span>
+                        <span class="skill-tag">AsyncIO</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-card" data-reveal>
+                    <h3><i class="fa-solid fa-wrench"></i> Araçlar & Diğer</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">Visual Studio</span>
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">Postman</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section homeos-section" id="homeos">
+        <div class="container">
+            <div class="homeos-header" data-reveal>
+                <span class="badge badge-accent">FEATURED PROJECT</span>
+                <h2>HomeOS Ecosystem</h2>
+                <p>Kişisel Akıllı Ev, Akıllı Otomasyon ve Sesli Asistan Ekosistemi</p>
+            </div>
+
+            <div class="architecture-flow glass-card" data-reveal>
+                <h3><i class="fa-solid fa-network-wired"></i> Sistem Mimarisi Akışı</h3>
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <i class="fa-solid fa-microphone"></i>
+                        <span>Jarvis AI</span>
+                    </div>
+                    <div class="flow-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                    <div class="flow-step">
+                        <i class="fa-brands fa-python"></i>
+                        <span>Python AI Engine</span>
+                    </div>
+                    <div class="flow-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                    <div class="flow-step highlight">
+                        <i class="fa-solid fa-gears"></i>
+                        <span>ASP.NET Core API</span>
+                    </div>
+                    <div class="flow-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                    <div class="flow-step">
+                        <i class="fa-solid fa-database"></i>
+                        <span>SQL Server</span>
+                    </div>
+                    <div class="flow-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                    <div class="flow-step">
+                        <i class="fa-solid fa-microchip"></i>
+                        <span>IoT Devices</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="status-panel glass-card" data-reveal>
+                <h3><i class="fa-solid fa-heart-pulse"></i> Canlı Sistem Durumu (Simülasyon)</h3>
+                <div class="status-grid">
+                    <div class="status-item">
+                        <span class="status-indicator online"></span>
+                        <span class="status-name">ASP.NET Core API:</span>
+                        <span class="status-value" id="api-status">Online (200 OK)</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-indicator online"></span>
+                        <span class="status-name">SQL Server:</span>
+                        <span class="status-value" id="db-status">Connected</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-indicator online"></span>
+                        <span class="status-name">AI Engine (FastAPI):</span>
+                        <span class="status-value" id="ai-status">Listening</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="projects">
+        <div class="container">
+            <h2 class="section-title" data-reveal><span class="gradient-text">03.</span> Öne Çıkan Projeler</h2>
+            <div class="projects-grid">
+                
+                <div class="project-card glass-card" data-reveal>
+                    <div class="project-img">
+                        <div class="img-placeholder"><i class="fa-solid fa-house-signal"></i></div>
+                    </div>
+                    <div class="project-content">
+                        <h3>HomeOS</h3>
+                        <p>Kişisel akıllı ev ve otomasyon ekosistemi. ASP.NET Core backend, SQL Server veritabanı, JWT Authentication, cihaz yönetimi ve Python tabanlı AI entegrasyonu içeren kapsamlı bir sistem.</p>
+                        <div class="project-techs">
+                            <span>C#</span><span>ASP.NET Core</span><span>SQL Server</span><span>JWT</span><span>Python</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn-icon" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i> Kodlar</a>
+                            <a href="#" class="btn-icon" target="_blank" aria-label="Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</a>
+                            <button class="btn-icon btn-detail" onclick="openModal('HomeOS')"><i class="fa-solid fa-circle-info"></i> Detaylar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-reveal>
+                    <div class="project-img">
+                        <div class="img-placeholder"><i class="fa-solid fa-robot"></i></div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Jarvis AI Assistant</h3>
+                        <p>Python tabanlı yapay zekâ ve sesli asistan sistemi. FastAPI ve WebSocket kullanarak HomeOS backend sistemiyle gerçek zamanlı haberleşen akıllı katman.</p>
+                        <div class="project-techs">
+                            <span>Python</span><span>FastAPI</span><span>WebSocket</span><span>AI</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn-icon" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i> Kodlar</a>
+                            <a href="#" class="btn-icon" target="_blank" aria-label="Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</a>
+                            <button class="btn-icon btn-detail" onclick="openModal('Jarvis AI Assistant')"><i class="fa-solid fa-circle-info"></i> Detaylar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-reveal>
+                    <div class="project-img">
+                        <div class="img-placeholder"><i class="fa-solid fa-sliders"></i></div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Automation System</h3>
+                        <p>Ev otomasyonu, kural tanımlama mimarisi ve cihaz kontrol süreçlerini yöneten yüksek performanslı otomasyon altyapısı.</p>
+                        <div class="project-techs">
+                            <span>C#</span><span>REST API</span><span>SQL Server</span><span>AsyncIO</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn-icon" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i> Kodlar</a>
+                            <a href="#" class="btn-icon" target="_blank" aria-label="Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</a>
+                            <button class="btn-icon btn-detail" onclick="openModal('Automation System')"><i class="fa-solid fa-circle-info"></i> Detaylar</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="roadmap">
+        <div class="container">
+            <h2 class="section-title" data-reveal><span class="gradient-text">04.</span> Gelişim Yol Haritası (Roadmap)</h2>
+            <div class="timeline">
+                <div class="timeline-item" data-reveal>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-step">Aşama 01</span>
+                        <h3>Backend Architecture</h3>
+                        <p>Temel mimarinin kurulması, Clean Architecture standartlarının ve katmanlı yapının entegrasyonu.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-reveal>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-step">Aşama 02</span>
+                        <h3>Authentication & Security</h3>
+                        <p>JWT token yetkilendirme, Middleware güvenlik katmanları ve veri şifreleme mekanizmaları.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-reveal>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-step">Aşama 03</span>
+                        <h3>Device Management</h3>
+                        <p>IoT cihaz veritabanı şemalarının tasarımı, CRUD operasyonları ve cihaz durum takibi.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-reveal>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-step">Aşama 04</span>
+                        <h3>Automation Engine & AI Integration</h3>
+                        <p>FastAPI & WebSocket katmanları ile Jarvis AI sesli komut işleme ve otomasyon motoru tetiklemeleri.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-reveal>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-step">Aşama 05</span>
+                        <h3>Mobile Application (Gelecek Planı)</h3>
+                        <p>Mobil istemci geliştirilerek tüm ekosistemin uzaktan mobil arayüz ile kontrol edilebilir hale getirilmesi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="contact">
+        <div class="container">
+            <h2 class="section-title" data-reveal><span class="gradient-text">05.</span> İletişim</h2>
+            <div class="contact-grid">
+                <div class="contact-info glass-card" data-reveal>
+                    <h3>Bir Projeniz mi Var ya da Staj/İş Fırsatı mı Sunuyorsunuz?</h3>
+                    <p>Teknolojik mimariler, backend projeleri veya iş birliği imkanları için aşağıdaki kanallardan doğrudan bana ulaşabilirsiniz.</p>
+                    <div class="contact-links">
+                        <a href="mailto:emre@example.com" class="contact-item">
+                            <i class="fa-regular fa-envelope"></i>
+                            <span>mehmetemrecetin@example.com</span>
+                        </a>
+                        <a href="https://github.com" target="_blank" class="contact-item">
+                            <i class="fa-brands fa-github"></i>
+                            <span>github.com/mehmetemrecetin</span>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="contact-item">
+                            <i class="fa-brands fa-linkedin"></i>
+                            <span>linkedin.com/in/mehmetemrecetin</span>
+                        </a>
+                    </div>
+                </div>
+                <form class="contact-form glass-card" id="contact-form" data-reveal>
+                    <div class="form-group">
+                        <label for="name">Ad Soyad</label>
+                        <input type="text" id="name" required placeholder="Adınız">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-posta</label>
+                        <input type="email" id="email" required placeholder="ornek@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mesajınız</label>
+                        <textarea id="message" rows="5" required placeholder="Mesajınızı buraya yazabilirsiniz..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fa-regular fa-paper-plane"></i> Mesaj Gönder</button>
+                    <div id="form-status" class="form-status"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-container">
+            <p>Designed & Developed by <strong>Mehmet Emre Çetin</strong></p>
+            <div class="footer-socials">
+                <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal" id="project-modal">
+        <div class="modal-content glass-card">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h3 id="modal-title">Proje Detayı</h3>
+            <p id="modal-description">Yükleniyor...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,109 +1,280 @@
-document.addEventListener('DOMContentLoaded', () => {
+// ==========================================================
+// MEHMET EMRE ÇETİN PORTFOLIO - INTERACTIVE ENGINE
+// ==========================================================
 
-    // --- 1. STICKY NAVBAR & SCROLL DETECTOR ---
+document.addEventListener('DOMContentLoaded', () => {
+    initNavigation();
+    initScrollAnimations();
+    initContactForm();
+    initStatusSimulation();
+    initSmoothScroll();
+    initArchitectureModal();
+    updateYear();
+});
+
+// ==========================================================
+// NAVIGATION & NAVBAR
+// ==========================================================
+
+function initNavigation() {
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
     const navbar = document.getElementById('navbar');
 
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            const expanded = hamburger.classList.contains('active');
+            hamburger.setAttribute('aria-expanded', expanded);
+        });
+
+        // Close menu when clicking a navigation link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
+
+    // Navbar scroll background effect
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
+        if (window.scrollY > 40) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
+        highlightActiveNavLink();
+    }, { passive: true });
+}
 
-        activateNavOnScroll();
+function highlightActiveNavLink() {
+    const sections = document.querySelectorAll('section[id], header[id]');
+    const navLinks = document.querySelectorAll('.nav-links .nav-link');
+
+    let currentSection = '';
+    const scrollPosition = window.scrollY + 180;
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            currentSection = section.getAttribute('id');
+        }
     });
 
-    // --- 2. MOBILE HAMBURGER MENU ---
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('nav-links');
-    const navItems = document.querySelectorAll('.nav-link');
-
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        hamburger.classList.toggle('open');
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href');
+        if (href && href.slice(1) === currentSection) {
+            link.classList.add('active');
+        }
     });
+}
 
-    // Menü elemanına tıklandığında mobilde menüyü kapat
-    navItems.forEach(item => {
-        item.addEventListener('click', () => {
-            if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-            }
-        });
-    });
+// ==========================================================
+// SCROLL ANIMATIONS (INTERSECTION OBSERVER)
+// ==========================================================
 
-    // --- 3. ACTIVE NAV LINK ON SCROLL ---
-    const sections = document.querySelectorAll('section[id]');
+function initScrollAnimations() {
+    const revealElements = document.querySelectorAll('[data-reveal]');
 
-    function activateNavOnScroll() {
-        const scrollY = window.pageYOffset;
-
-        sections.forEach(current => {
-            const sectionHeight = current.offsetHeight;
-            const sectionTop = current.offsetTop - 100;
-            const sectionId = current.getAttribute('id');
-            const targetLink = document.querySelector(`.nav-links a[href*=${sectionId}]`);
-
-            if (targetLink) {
-                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                    targetLink.classList.add('active');
-                } else {
-                    targetLink.classList.remove('active');
+    if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Stagger effect
+                    setTimeout(() => {
+                        entry.target.classList.add('revealed');
+                    }, (index % 4) * 80);
+                    observer.unobserve(entry.target);
                 }
-            }
+            });
+        }, {
+            threshold: 0.08,
+            rootMargin: '0px 0px -40px 0px'
         });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+    } else {
+        // Fallback for older browsers
+        revealElements.forEach(el => el.classList.add('revealed'));
     }
+}
 
-    // --- 4. FRONTEND FORM VALIDATION ---
-    const contactForm = document.getElementById('contact-form');
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const messageInput = document.getElementById('message');
-    const formStatus = document.getElementById('form-status');
+// ==========================================================
+// CONTACT FORM VALIDATION & SUBMISSION
+// ==========================================================
 
-    contactForm.addEventListener('submit', (e) => {
+function initContactForm() {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        let isValid = true;
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const messageInput = document.getElementById('message');
+        const formStatus = document.getElementById('form-status');
+        const submitBtn = form.querySelector('button[type="submit"]');
 
         // Reset errors
         document.querySelectorAll('.form-group').forEach(group => group.classList.remove('error'));
 
-        // Validate Name
-        if (nameInput.value.trim() === '') {
-            showError(nameInput);
+        let isValid = true;
+
+        if (!nameInput.value.trim()) {
+            showFieldError(nameInput);
             isValid = false;
         }
 
-        // Validate Email
         if (!validateEmail(emailInput.value.trim())) {
-            showError(emailInput);
+            showFieldError(emailInput);
             isValid = false;
         }
 
-        // Validate Message
-        if (messageInput.value.trim() === '') {
-            showError(messageInput);
+        if (!messageInput.value.trim() || messageInput.value.trim().length < 10) {
+            showFieldError(messageInput);
             isValid = false;
         }
 
-        if (isValid) {
-            formStatus.style.color = '#27c93f';
-            formStatus.textContent = 'Mesajınız başarıyla gönderildi! En kısa sürede dönüş yapacağım.';
-            contactForm.reset();
+        if (!isValid) {
+            showFormStatus('Lütfen kırmızı ile işaretlenen alanları kontrol ediniz.', 'error', formStatus);
+            return;
+        }
 
-            setTimeout(() => {
-                formStatus.textContent = '';
-            }, 5000);
+        // Loading state
+        submitBtn.disabled = true;
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gönderiliyor...';
+
+        try {
+            // Simulate backend async request delay
+            await new Promise(resolve => setTimeout(resolve, 1200));
+
+            showFormStatus('✓ Mesajınız başarıyla iletildi! En kısa sürede geri dönüş yapacağım.', 'success', formStatus);
+            form.reset();
+        } catch (error) {
+            showFormStatus('Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.', 'error', formStatus);
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
         }
     });
+}
 
-    function showError(inputElement) {
+function showFieldError(inputElement) {
+    if (inputElement && inputElement.parentElement) {
         inputElement.parentElement.classList.add('error');
     }
+}
 
-    function validateEmail(email) {
-        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(String(email).toLowerCase());
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+function showFormStatus(message, type, element) {
+    if (!element) return;
+    element.textContent = message;
+    element.className = `form-status show ${type}`;
+
+    if (type === 'success') {
+        setTimeout(() => {
+            element.classList.remove('show');
+        }, 6000);
+    }
+}
+
+// ==========================================================
+// HOMEOS SYSTEM STATUS SIMULATION
+// ==========================================================
+
+function initStatusSimulation() {
+    const apiStatus = document.getElementById('api-status');
+    const dbStatus = document.getElementById('db-status');
+    const aiStatus = document.getElementById('ai-status');
+
+    if (!apiStatus) return;
+
+    setInterval(() => {
+        const ping = Math.floor(Math.random() * 15) + 8;
+        apiStatus.textContent = `Online (200 OK) (${ping}ms)`;
+
+        const dbStates = ['Bağlandı', 'Senkronize', 'Hazır'];
+        dbStatus.textContent = dbStates[Math.floor(Math.random() * dbStates.length)];
+
+        const aiStates = ['Aktif', 'Dinliyor', 'İşliyor'];
+        aiStatus.textContent = aiStates[Math.floor(Math.random() * aiStates.length)];
+    }, 4500);
+}
+
+// ==========================================================
+// SMOOTH SCROLLING
+// ==========================================================
+
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (!href || href === '#') return;
+
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                const offsetTop = target.offsetTop - 75;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// ==========================================================
+// ARCHITECTURE MODAL / INFORMATION
+// ==========================================================
+
+function initArchitectureModal() {
+    const archBtn = document.getElementById('architecture-btn');
+    if (archBtn) {
+        archBtn.addEventListener('click', () => {
+            alert(
+                '📌 HomeOS Ekosistemi Mimari Detayları:\n\n' +
+                '• Sesli / Metinsel Girdi → AI Motoru (Python FastAPI)\n' +
+                '• AI Motoru → ASP.NET Core REST API Servisleri\n' +
+                '• REST API → SQL Server Veritabanı & JWT Doğrulama\n' +
+                '• Veritabanı & API → Gerçek Zamanlı IoT Cihaz Yönetimi\n\n' +
+                'Clean Architecture ve SOLID prensiplerine uygun, ölçeklenebilir altyapı.'
+            );
+        });
+    }
+}
+
+// ==========================================================
+// UTILITIES
+// ==========================================================
+
+function updateYear() {
+    const yearElement = document.getElementById('year');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+}
+
+// Keyboard shortcuts (Escape key closes mobile menu)
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        if (navLinks && navLinks.classList.contains('active')) {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        }
     }
 });
